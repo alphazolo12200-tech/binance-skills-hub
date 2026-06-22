@@ -8,11 +8,13 @@ description: |
   prediction market, predict.fun, YES/NO market, place a prediction,
   redeem winnings, claim payout, prediction portfolio, prediction PnL,
   x402 payment, HTTP 402 Payment Required, pay a known x402 API,
+  check approvals, view token approvals, revoke approval, manage approvals,
+  wallet approvals, authorization management, token authorization,
   or any on-chain wallet operation.
 metadata:
   author: binance-web3-team
-  version: "1.2.0"
-  requiredCliVersion: "1.2.1"
+  version: '1.3.0'
+  requiredCliVersion: '1.3.1'
   openclaw:
     requires:
       bins:
@@ -31,7 +33,7 @@ This skill drives the `baw` CLI to manage a Binance Web3 wallet — sign-in/sign
 ## Command Routing
 
 | User Intent                                                          | Command                               | Reference                                         |
-|----------------------------------------------------------------------|---------------------------------------|---------------------------------------------------|
+| -------------------------------------------------------------------- | ------------------------------------- | ------------------------------------------------- |
 | Sign in / connect wallet                                             | `auth signin` → `auth verify`         | [authentication.md](references/authentication.md) |
 | Sign out / disconnect wallet                                         | `auth signout`                        | [authentication.md](references/authentication.md) |
 | Check if wallet is connected                                         | `wallet status`                       | [wallet-view.md](references/wallet-view.md)       |
@@ -41,6 +43,9 @@ This skill drives the `baw` CLI to manage a Binance Web3 wallet — sign-in/sign
 | View transaction history                                             | `wallet tx-history`                   | [wallet-view.md](references/wallet-view.md)       |
 | View security settings and remaining daily quota                     | `wallet settings`                     | [wallet-setting.md](references/wallet-setting.md) |
 | Check if any transactions are pending or require double-confirmation | `wallet tx-lock`                      | [wallet-view.md](references/wallet-view.md)       |
+| Check wallet approvals / manage token authorizations                  | `approvals list`                      | [approvals.md](references/approvals.md)           |
+| View approval details                                                | `approvals detail`                    | [approvals.md](references/approvals.md)           |
+| Revoke a token approval                                              | `approvals revoke`                    | [approvals.md](references/approvals.md)           |
 | Send / transfer tokens                                               | `wallet send`                         | [send.md](references/send.md)                     |
 | Swap tokens at market price                                          | `market-order swap`                   | [market-order.md](references/market-order.md)     |
 | Get a swap quote without trading                                     | `market-order quote`                  | [market-order.md](references/market-order.md)     |
@@ -123,28 +128,32 @@ When the user refers to any of these tokens by name (e.g., "send USDT", "swap BN
 If the user refers to a US stock by ticker or company name, use the `binance-tokenized-securities-info` skill to resolve the contract and fetch on-chain price / market status. If not installed, ask: "Install `binance-tokenized-securities-info` from https://github.com/binance/binance-skills-hub to look up its info?" and install only after a clear "yes".
 
 ### BNB Smart Chain (BSC)
+
 | Token        | Address                                      |
-|--------------|----------------------------------------------|
+| ------------ | -------------------------------------------- |
 | BNB (Native) | `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` |
 | USDT         | `0x55d398326f99059fF775485246999027B3197955` |
 | USDC         | `0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d` |
 
 ### Solana
+
 | Token        | Address                                        |
-|--------------|------------------------------------------------|
+| ------------ | ---------------------------------------------- |
 | SOL (Native) | `So11111111111111111111111111111111111111111`  |
 | USDT         | `Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB` |
 | USDC         | `EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v` |
 
 ### Ethereum
+
 | Token        | Address                                      |
-|--------------|----------------------------------------------|
+| ------------ | -------------------------------------------- |
 | ETH (Native) | `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` |
 | USDT         | `0xdAC17F958D2ee523a2206206994597C13D831ec7` |
 | USDC         | `0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48` |
 
 ### Base
+
 | Token        | Address                                      |
-|--------------|----------------------------------------------|
+| ------------ | -------------------------------------------- |
 | ETH (Native) | `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` |
 | USDC         | `0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913` |
