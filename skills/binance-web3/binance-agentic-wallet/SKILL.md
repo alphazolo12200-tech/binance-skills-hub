@@ -10,11 +10,14 @@ description: |
   x402 payment, HTTP 402 Payment Required, pay a known x402 API,
   check approvals, view token approvals, revoke approval, manage approvals,
   wallet approvals, authorization management, token authorization,
+  DeFi protocols, DeFi position, DeFi portfolio, staking, liquidity pool, LP, yield farming,
+  health factor, APY, TVL, DeFi investment, DeFi deposit, DeFi redeem, DeFi stake, DeFi unstake,
+  add liquidity, remove liquidity, claim rewards, claim fees,
   or any on-chain wallet operation.
 metadata:
   author: binance-web3-team
-  version: '1.3.0'
-  requiredCliVersion: '1.3.1'
+  version: '1.4.0'
+  requiredCliVersion: '1.4.0'
   openclaw:
     requires:
       bins:
@@ -28,12 +31,12 @@ metadata:
 
 # Binance Agentic Wallet Skill
 
-This skill drives the `baw` CLI to manage a Binance Web3 wallet — sign-in/sign-out, balance and history queries, security settings, token transfers, DEX swaps (market orders), limit orders, order management, prediction market trading, and x402 payments.
+This skill drives the `baw` CLI to manage a Binance Web3 wallet — sign-in/sign-out, balance and history queries, security settings, token transfers, DEX swaps (market orders), limit orders, order management, prediction market trading, x402 payments, and DeFi operations.
 
 ## Command Routing
 
 | User Intent                                                          | Command                               | Reference                                         |
-| -------------------------------------------------------------------- | ------------------------------------- | ------------------------------------------------- |
+|----------------------------------------------------------------------|---------------------------------------|---------------------------------------------------|
 | Sign in / connect wallet                                             | `auth signin` → `auth verify`         | [authentication.md](references/authentication.md) |
 | Sign out / disconnect wallet                                         | `auth signout`                        | [authentication.md](references/authentication.md) |
 | Check if wallet is connected                                         | `wallet status`                       | [wallet-view.md](references/wallet-view.md)       |
@@ -43,7 +46,7 @@ This skill drives the `baw` CLI to manage a Binance Web3 wallet — sign-in/sign
 | View transaction history                                             | `wallet tx-history`                   | [wallet-view.md](references/wallet-view.md)       |
 | View security settings and remaining daily quota                     | `wallet settings`                     | [wallet-setting.md](references/wallet-setting.md) |
 | Check if any transactions are pending or require double-confirmation | `wallet tx-lock`                      | [wallet-view.md](references/wallet-view.md)       |
-| Check wallet approvals / manage token authorizations                  | `approvals list`                      | [approvals.md](references/approvals.md)           |
+| Check wallet approvals / manage token authorizations                 | `approvals list`                      | [approvals.md](references/approvals.md)           |
 | View approval details                                                | `approvals detail`                    | [approvals.md](references/approvals.md)           |
 | Revoke a token approval                                              | `approvals revoke`                    | [approvals.md](references/approvals.md)           |
 | Send / transfer tokens                                               | `wallet send`                         | [send.md](references/send.md)                     |
@@ -72,6 +75,17 @@ This skill drives the `baw` CLI to manage a Binance Web3 wallet — sign-in/sign
 | Redeem / claim winning prediction positions                          | `prediction trade redeem`             | [prediction.md](references/prediction.md)         |
 | Preview x402 payment options from an HTTP 402 response               | `x402-payment preview`                | [x402-payment.md](references/x402-payment.md)     |
 | Sign a selected x402 payment option                                  | `x402-payment sign`                   | [x402-payment.md](references/x402-payment.md)     |
+| List DeFi protocols (TVL / APY rankings)                             | `defi protocol-list`                  | [defi.md](references/defi.md)                     |
+| Get DeFi protocol details (description, security score, FAQ, etc.)   | `defi protocol-info`                  | [defi.md](references/defi.md)                     |
+| List DeFi investment opportunities (Earn / LiquidityPool)            | `defi investment-list`                | [defi.md](references/defi.md)                     |
+| Get full details for a single DeFi investment                        | `defi investment-info`                | [defi.md](references/defi.md)                     |
+| Query my DeFi positions (Lending health, LP, staking, ...)           | `defi position`                       | [defi.md](references/defi.md)                     |
+| Deposit / stake / supply to a DeFi protocol                          | `defi deposit`                        | [defi.md](references/defi.md)                     |
+| Redeem / unstake / withdraw from a DeFi protocol                     | `defi redeem`                         | [defi.md](references/defi.md)                     |
+| Add liquidity to an LP position                                      | `defi lp-add`                         | [defi.md](references/defi.md)                     |
+| Remove liquidity from an LP position                                 | `defi lp-remove`                      | [defi.md](references/defi.md)                     |
+| Claim LP fees / rewards / matured redemptions                        | `defi claim`                          | [defi.md](references/defi.md)                     |
+| Preview a DeFi transaction (no broadcast)                            | `defi preview`                        | [defi.md](references/defi.md)                     |
 
 ---
 
@@ -85,7 +99,7 @@ At the start of each conversation, complete the preflight checks in [preflight.m
 
 Always follow these steps to build the command correctly:
 
-1. **Read the reference file first.** Before constructing any command, open the reference file listed in the table above and read the Syntax and Parameters sections for that command. Do not rely on memory or guess the parameter format.
+1. **Always read the reference file first.** Before constructing any command, open the reference file listed in the table above and read the Syntax and Parameters sections for that command. Do not rely on memory or guess the parameter format.
 2. **Build the command.** Use the exact syntax from the reference file.
 3. **Always append `--json`.** This ensures the output is machine-readable JSON. Every command supports this flag.
 4. **Confirm before execution.** Confirm with the user each time before any state-changing command. Remind the user to do their own research (DYOR). For trades without explicit slippage, disclose the default ("auto"). Only proceed on clear affirmative replies (e.g., "yes", "confirm", "go ahead"). Treat anything else as non-confirmation and re-prompt.
@@ -130,7 +144,7 @@ If the user refers to a US stock by ticker or company name, use the `binance-tok
 ### BNB Smart Chain (BSC)
 
 | Token        | Address                                      |
-| ------------ | -------------------------------------------- |
+|--------------|----------------------------------------------|
 | BNB (Native) | `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` |
 | USDT         | `0x55d398326f99059fF775485246999027B3197955` |
 | USDC         | `0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d` |
@@ -138,7 +152,7 @@ If the user refers to a US stock by ticker or company name, use the `binance-tok
 ### Solana
 
 | Token        | Address                                        |
-| ------------ | ---------------------------------------------- |
+|--------------|------------------------------------------------|
 | SOL (Native) | `So11111111111111111111111111111111111111111`  |
 | USDT         | `Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB` |
 | USDC         | `EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v` |
@@ -146,7 +160,7 @@ If the user refers to a US stock by ticker or company name, use the `binance-tok
 ### Ethereum
 
 | Token        | Address                                      |
-| ------------ | -------------------------------------------- |
+|--------------|----------------------------------------------|
 | ETH (Native) | `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` |
 | USDT         | `0xdAC17F958D2ee523a2206206994597C13D831ec7` |
 | USDC         | `0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48` |
@@ -154,6 +168,6 @@ If the user refers to a US stock by ticker or company name, use the `binance-tok
 ### Base
 
 | Token        | Address                                      |
-| ------------ | -------------------------------------------- |
+|--------------|----------------------------------------------|
 | ETH (Native) | `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` |
 | USDC         | `0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913` |
