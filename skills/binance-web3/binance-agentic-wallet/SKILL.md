@@ -13,11 +13,13 @@ description: |
   DeFi protocols, DeFi position, DeFi portfolio, staking, liquidity pool, LP, yield farming,
   health factor, APY, TVL, DeFi investment, DeFi deposit, DeFi redeem, DeFi stake, DeFi unstake,
   add liquidity, remove liquidity, claim rewards, claim fees,
+  speed up transaction, speedup, cancel transaction, cancel pending tx,
+  pending transactions, stuck transaction, replace transaction,
   or any on-chain wallet operation.
 metadata:
   author: binance-web3-team
-  version: '1.4.0'
-  requiredCliVersion: '1.4.0'
+  version: '1.7.0'
+  requiredCliVersion: '1.7.0'
   openclaw:
     requires:
       bins:
@@ -46,7 +48,10 @@ This skill drives the `baw` CLI to manage a Binance Web3 wallet — sign-in/sign
 | View transaction history                                             | `wallet tx-history`                   | [wallet-view.md](references/wallet-view.md)       |
 | View security settings and remaining daily quota                     | `wallet settings`                     | [wallet-setting.md](references/wallet-setting.md) |
 | Check if any transactions are pending or require double-confirmation | `wallet tx-lock`                      | [wallet-view.md](references/wallet-view.md)       |
-| Check wallet approvals / manage token authorizations                 | `approvals list`                      | [approvals.md](references/approvals.md)           |
+| Speed up a pending transaction                                       | `wallet speed-up`                     | [speedup-cancel.md](references/speedup-cancel.md) |
+| Cancel a pending transaction                                         | `wallet cancel`                       | [speedup-cancel.md](references/speedup-cancel.md) |
+| List pending transactions / stuck transactions                       | `wallet tx-history --type pending`    | [speedup-cancel.md](references/speedup-cancel.md) |
+| Check wallet approvals / manage token authorizations                  | `approvals list`                      | [approvals.md](references/approvals.md)           |
 | View approval details                                                | `approvals detail`                    | [approvals.md](references/approvals.md)           |
 | Revoke a token approval                                              | `approvals revoke`                    | [approvals.md](references/approvals.md)           |
 | Send / transfer tokens                                               | `wallet send`                         | [send.md](references/send.md)                     |
