@@ -1,25 +1,21 @@
 ---
 name: binance-agentic-wallet
 description: |
-  Use when the user mentions connect/disconnect wallet, sign in, sign out, web3 wallet, wallet address,
-  check balance, how much crypto do I have, send BNB/USDT/crypto, transfer tokens, swap tokens,
-  buy/sell token, DEX trade, limit order, market order, cancel order, get a quote, transaction history,
-  wallet settings, daily limit, slippage, MEV protection, supported chains, available networks,
-  prediction market, predict.fun, YES/NO market, place a prediction,
-  redeem winnings, claim payout, prediction portfolio, prediction PnL,
-  x402 payment, HTTP 402 Payment Required, pay a known x402 API,
-  check approvals, view token approvals, revoke approval, manage approvals,
-  wallet approvals, authorization management, token authorization,
-  DeFi protocols, DeFi position, DeFi portfolio, staking, liquidity pool, LP, yield farming,
-  health factor, APY, TVL, DeFi investment, DeFi deposit, DeFi redeem, DeFi stake, DeFi unstake,
-  add liquidity, remove liquidity, claim rewards, claim fees,
-  speed up transaction, speedup, cancel transaction, cancel pending tx,
-  pending transactions, stuck transaction, replace transaction,
+  Use when the user mentions wallet connect/sign in/sign out, check balance, send/transfer tokens,
+  swap/buy/sell tokens, DEX trade, limit/market order, cancel order, get a quote, transaction history,
+  wallet settings, daily limit, slippage, MEV protection, supported chains,
+  prediction market, place prediction, redeem winnings, prediction PnL,
+  x402 payment, HTTP 402 Payment Required,
+  check/revoke/manage token approvals,
+  DeFi protocols, staking, liquidity pool, LP, yield farming, deposit, redeem, stake, unstake,
+  claim rewards/fees, health factor, APY, TVL,
+  sign external transaction, contract call, sign message, EIP-712, developer mode,
+  speed up/cancel/replace transaction, pending/stuck transactions,
   or any on-chain wallet operation.
 metadata:
   author: binance-web3-team
-  version: '1.7.0'
-  requiredCliVersion: '1.7.0'
+  version: '1.8.0'
+  requiredCliVersion: '1.8.0'
   openclaw:
     requires:
       bins:
@@ -62,6 +58,12 @@ This skill drives the `baw` CLI to manage a Binance Web3 wallet — sign-in/sign
 | Sell a token at a target price (limit order)                         | `limit-order sell`                    | [limit-order.md](references/limit-order.md)       |
 | List or check limit order status                                     | `limit-order list`                    | [limit-order.md](references/limit-order.md)       |
 | Cancel a limit order                                                 | `limit-order cancel`                  | [limit-order.md](references/limit-order.md)       |
+| Preview an external contract call                                    | `contract-call preview`               | [external-sign.md](references/external-sign.md)   |
+| Execute a previewed contract call                                    | `contract-call execute`               | [external-sign.md](references/external-sign.md)   |
+| Preview an EIP-712 message signature                                 | `sign-message preview`                | [external-sign.md](references/external-sign.md)   |
+| Execute a previewed message signature                                | `sign-message execute`                | [external-sign.md](references/external-sign.md)   |
+| Fetch a confirmed message signature                                  | `sign-message result`                 | [external-sign.md](references/external-sign.md)   |
+| View message signature history                                       | `sign-message history`                | [external-sign.md](references/external-sign.md)   |
 | List prediction market categories                                    | `prediction category list`            | [prediction.md](references/prediction.md)         |
 | Browse / list prediction markets                                     | `prediction market list`              | [prediction.md](references/prediction.md)         |
 | Get prediction market details                                        | `prediction market detail`            | [prediction.md](references/prediction.md)         |
@@ -108,6 +110,8 @@ Always follow these steps to build the command correctly:
 2. **Build the command.** Use the exact syntax from the reference file.
 3. **Always append `--json`.** This ensures the output is machine-readable JSON. Every command supports this flag.
 4. **Confirm before execution.** Confirm with the user each time before any state-changing command. Remind the user to do their own research (DYOR). For trades without explicit slippage, disclose the default ("auto"). Only proceed on clear affirmative replies (e.g., "yes", "confirm", "go ahead"). Treat anything else as non-confirmation and re-prompt.
+5. **External sign two-step flow.** Before `contract-call` or `sign-message`, run `wallet settings --json` and confirm `devMode.enabled=true`. Then run `preview`, show the user the parsed transaction/message and risk details, get explicit confirmation, and only then run `execute` with the `requestId` from the preview. If preview returns an error, do not attempt `execute`.
+6. **`contract-call --value` is in wei**, not human-readable like `--amount` in other commands. 1 BNB is `--value 1000000000000000000`.
 
 ---
 
@@ -127,6 +131,7 @@ Always follow these steps to build the command correctly:
 - **No token judgments**: Never provide investment advice. Only present factual audit data; let the user decide.
 - **Fail-closed**: If the security check API is unreachable, inform the user and require acknowledgment before proceeding.
 - **Swap pre-check**: Before `market-order swap`, `limit-order buy`, or `limit-order sell`, complete the pre-check in [security.md](references/security.md).
+- **External sign pre-check**: Before `contract-call execute` or `sign-message execute`, always show the user the preview output (`parsedTx` / `parsedMessage`, `risks`, and `authorityChanges` when present) and get explicit confirmation. External transactions are user-built, so the user must verify exactly what they are signing.
 
 ---
 
