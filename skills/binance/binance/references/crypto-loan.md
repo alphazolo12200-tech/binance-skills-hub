@@ -2,7 +2,7 @@
 
 | Endpoint | Key params | Description |
 |---|---|---|
-| check-collateral-repay-rate | `loan-coin` `collateral-coin` [] | Check Collateral Repay Rate |
+| check-collateral-repay-rate | `loan-coin` `collateral-coin` [] | Check Collateral Flexible Repay Rate |
 | flexible-loan-adjust-ltv | `loan-coin` `collateral-coin` `adjustment-amount` `direction` [] | Flexible Loan Adjust LTV |
 | flexible-loan-borrow | `loan-coin` `collateral-coin` [`loan-amount` `collateral-amount`] | Flexible Loan Borrow |
 | flexible-loan-repay | `loan-coin` `collateral-coin` `repay-amount` [`collateral-return` `full-repayment` `repayment-type`] | Flexible Loan Repay |
@@ -20,8 +20,13 @@
 
 | Endpoint | Key params | Description |
 |---|---|---|
-| check-collateral-repay-rate-stable-rate | `loan-coin` `collateral-coin` `repay-amount` [] | Check Collateral Repay Rate |
 | get-crypto-loans-income-history | [`asset` `type` `start-time` `end-time` `limit`] | Get Crypto Loans Income History |
 | get-loan-borrow-history | [`order-id` `loan-coin` `collateral-coin` `start-time` `end-time` `current` `limit`] | Get Loan Borrow History |
 | get-loan-ltv-adjustment-history | [`order-id` `loan-coin` `collateral-coin` `start-time` `end-time` `current` `limit`] | Get Loan LTV Adjustment History |
 | get-loan-repayment-history | [`order-id` `loan-coin` `collateral-coin` `start-time` `end-time` `current` `limit`] | Get Loan Repayment History |
+
+### Enums
+
+**direction:** `ADDITIONAL` `REDUCED`
+**repayment-type:** `1` `2`
+**type:** `borrowIn` `collateralSpent` `repayAmount` `collateralReturn` `addCollateral` `removeCollateral` `collateralReturnAfterLiquidation`

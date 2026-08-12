@@ -17,3 +17,10 @@
 | place-limit-order | `base-asset` `quote-asset` `limit-price` `side` `expired-type` [`base-amount` `quote-amount` `wallet-type`] | Place limit order |
 | query-limit-open-orders | [] | Query limit open orders |
 | send-quote-request | `from-asset` `to-asset` [`from-amount` `to-amount` `wallet-type` `valid-time`] | Send Quote Request |
+
+### Enums
+
+**expired-type:** `1_D` `3_D` `7_D` `30_D`
+**side:** `BUY` `SELL`
+**valid-time:** `10s` `30s` `1m`
+**wallet-type:** `SPOT` `FUNDING` `EARN` `SPOT_FUNDING` `FUNDING_EARN` `SPOT_FUNDING_EARN` `SPOT_EARN`

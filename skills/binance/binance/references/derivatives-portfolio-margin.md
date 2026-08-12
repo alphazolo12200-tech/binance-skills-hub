@@ -79,8 +79,8 @@
 | margin-account-repay | `asset` `amount` [] | Margin Account Repay |
 | margin-account-repay-debt | `asset` [`amount` `specify-repay-assets`] | Margin Account Repay Debt |
 | margin-account-trade-list | `symbol` [`order-id` `start-time` `end-time` `from-id` `limit`] | Margin Account Trade List |
-| modify-cm-order | `symbol` `side` `quantity` `price` [`order-id` `orig-client-order-id` `price-match`] | Modify CM Order |
-| modify-um-order | `symbol` `side` `quantity` `price` [`order-id` `orig-client-order-id` `price-match`] | Modify UM Order |
+| modify-cm-order | `symbol` `side` `quantity` `price` [`order-id` `orig-client-order-id` `price-match` `modify-id`] | Modify CM Order |
+| modify-um-order | `symbol` `side` `quantity` `price` [`order-id` `orig-client-order-id` `price-match` `modify-id`] | Modify UM Order |
 | new-cm-conditional-order | `symbol` `side` `strategy-type` [`position-side` `time-in-force` `quantity` `reduce-only` `price` `working-type` `price-protect` `new-client-strategy-id` `stop-price` `activation-price` `callback-rate`] | New CM Conditional Order |
 | new-cm-order | `symbol` `side` `type` [`position-side` `time-in-force` `quantity` `reduce-only` `price` `price-match` `new-client-order-id` `new-order-resp-type`] | New CM Order |
 | new-margin-order | `symbol` `side` `type` [`quantity` `quote-order-qty` `price` `stop-price` `new-client-order-id` `new-order-resp-type` `iceberg-qty` `side-effect-type` `time-in-force` `self-trade-prevention-mode` `auto-repay-at-cancel`] | New Margin Order |
@@ -88,7 +88,7 @@
 | new-um-conditional-order | `symbol` `side` `strategy-type` [`position-side` `time-in-force` `quantity` `reduce-only` `price` `working-type` `price-protect` `new-client-strategy-id` `stop-price` `activation-price` `callback-rate` `price-match` `self-trade-prevention-mode` `good-till-date`] | New UM Conditional Order |
 | new-um-order | `symbol` `side` `type` [`position-side` `time-in-force` `quantity` `reduce-only` `price` `new-client-order-id` `new-order-resp-type` `price-match` `self-trade-prevention-mode` `good-till-date`] | New UM Order |
 | query-all-cm-conditional-orders | [`symbol` `strategy-id` `start-time` `end-time` `limit`] | Query All CM Conditional Orders |
-| query-all-cm-orders | `symbol` [`pair` `order-id` `start-time` `end-time` `limit`] | Query All CM Orders |
+| query-all-cm-orders | [`symbol` `pair` `order-id` `start-time` `end-time` `limit`] | Query All CM Orders |
 | query-all-current-cm-open-conditional-orders | [`symbol`] | Query All Current CM Open Conditional Orders |
 | query-all-current-cm-open-orders | [`symbol` `pair`] | Query All Current CM Open Orders |
 | query-all-current-um-open-algo-orders | [`algo-type` `symbol` `algo-id`] | Query All Current UM Open Algo Orders |
@@ -132,15 +132,24 @@
 
 ### Enums
 
+**algo-type:** `CONDITIONAL`
+**archived:** `true` `false`
 **auto-close-type:** `LIQUIDATION` `ADL`
-**new-order-resp-type:** `ACK` `RESULT`
+**auto-repay:** `true` `false`
+**dual-side-position:** `true` `false`
+**fee-burn:** `true` `false`
+**income-type:** `TRANSFER` `WELCOME_BONUS` `REALIZED_PNL` `FUNDING_FEE` `COMMISSION` `INSURANCE_CLEAR` `REFERRAL_KICKBACK` `COMMISSION_REBATE` `API_REBATE` `CONTEST_REWARD` `CROSS_COLLATERAL_TRANSFER` `OPTIONS_PREMIUM_FEE` `OPTIONS_SETTLE_PROFIT` `INTERNAL_TRANSFER` `AUTO_EXCHANGE` `DELIVERED_SETTELMENT` `COIN_SWAP_DEPOSIT` `COIN_SWAP_WITHDRAW` `POSITION_LIMIT_INCREASE_FEE`
+**new-order-resp-type:** `ACK` `RESULT` `FULL`
 **position-side:** `BOTH` `LONG` `SHORT`
-**price-match:** `NONE` `OPPONENT` `OPPONENT_5` `OPPONENT_10` `OPPONENT_20` `QUEUE` `QUEUE_5` `QUEUE_10` `QUEUE_20`
+**price-match:** `OPPONENT` `OPPONENT_5` `OPPONENT_10` `OPPONENT_20` `QUEUE` `QUEUE_5` `QUEUE_10` `QUEUE_20`
+**price-protect:** `true` `false`
+**reduce-only:** `true` `false`
 **self-trade-prevention-mode:** `NONE` `EXPIRE_TAKER` `EXPIRE_BOTH` `EXPIRE_MAKER`
-**side-effect-type:** `NO_SIDE_EFFECT` `MARGIN_BUY` `AUTO_REPAY`
+**side-effect-type:** `NO_SIDE_EFFECT` `MARGIN_BUY` `AUTO_REPAY` `AUTO_BORROW_REPAY`
 **side:** `BUY` `SELL`
 **stop-limit-time-in-force:** `GTC` `IOC` `FOK`
-**strategy-type:** `STOP` `STOP_MARKET` `LIMIT_MAKER` `TAKE_PROFIT` `TAKE_PROFIT_MARKET` `TRAILING_STOP_MARKET`
-**time-in-force:** `GTC` `IOC` `FOK` `GTX`
-**type:** `LIMIT` `MARKET`
-**working-type:** `MARK_PRICE`
+**strategy-type:** `STOP` `STOP_MARKET` `TAKE_PROFIT` `TAKE_PROFIT_MARKET` `TRAILING_STOP_MARKET`
+**time-in-force:** `GTC` `IOC` `FOK` `GTX` `GTD`
+**transfer-side:** `TO_UM` `FROM_UM`
+**type:** `LIMIT` `MARKET` `STOP_LOSS` `STOP_LOSS_LIMIT` `TAKE_PROFIT` `TAKE_PROFIT_LIMIT` `LIMIT_MAKER`
+**working-type:** `MARK_PRICE` `CONTRACT_PRICE`

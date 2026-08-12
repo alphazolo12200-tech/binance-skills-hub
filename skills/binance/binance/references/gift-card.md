@@ -2,7 +2,7 @@
 
 | Endpoint | Key params | Description |
 |---|---|---|
-| create-a-dual-token-gift-card | `base-token` `face-token` `base-token-amount` [] | Create a dual-token gift card(fixed value, discount feature) |
+| create-a-dual-token-gift-card | `base-token` `face-token` `base-token-amount` [] | Create a dual-token gift card (fixed value, discount feature) |
 | create-a-single-token-gift-card | `token` `amount` [] | Create a single-token gift card |
 | fetch-rsa-public-key | [] | Fetch RSA Public Key |
 | fetch-token-limit | `base-token` [] | Fetch Token Limit |

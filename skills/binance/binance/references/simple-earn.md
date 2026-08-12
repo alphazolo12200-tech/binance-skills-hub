@@ -20,7 +20,7 @@
 | get-flexible-personal-left-quota | `product-id` [] | Get Flexible Personal Left Quota |
 | get-flexible-product-position | [`asset` `product-id` `current` `size`] | Get Flexible Product Position |
 | get-flexible-redemption-record | [`product-id` `redeem-id` `asset` `start-time` `end-time` `current` `size`] | Get Flexible Redemption Record |
-| get-flexible-rewards-history | `type` [`product-id` `asset` `start-time` `end-time` `current` `size`] | Get Flexible Rewards History |
+| get-flexible-rewards-history | [`product-id` `asset` `start-time` `end-time` `type` `current` `size`] | Get Flexible Rewards History |
 | get-flexible-subscription-preview | `product-id` `amount` [] | Get Flexible Subscription Preview |
 | get-flexible-subscription-record | [`product-id` `purchase-id` `asset` `start-time` `end-time` `current` `size`] | Get Flexible Subscription Record |
 | get-locked-personal-left-quota | `project-id` [] | Get Locked Personal Left Quota |
@@ -54,3 +54,19 @@
 | get-rwusd-subscription-history | [`asset` `start-time` `end-time` `current` `size`] | Get RWUSD subscription history |
 | redeem-rwusd | `amount` `type` [] | Redeem RWUSD |
 | subscribe-rwusd | `asset` `amount` [] | Subscribe RWUSD |
+
+
+## Yield Arena (auth required)
+
+| Endpoint | Key params | Description |
+|---|---|---|
+| get-yield-arena-activities | [`lang`] | Get Yield Arena Activities |
+
+### Enums
+
+**apr-period:** `DAY` `YEAR`
+**asset:** `USDC` `USDT`
+**dest-account:** `SPOT` `FUND`
+**redeem-to:** `SPOT` `FLEXIBLE`
+**source-account:** `SPOT` `FUND` `ALL`
+**type:** `BONUS` `REALTIME` `REWARDS` `ALL`

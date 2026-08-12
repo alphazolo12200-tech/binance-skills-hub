@@ -1,4 +1,4 @@
-## Mining (auth required)
+## Default (auth required)
 
 | Endpoint | Key params | Description |
 |---|---|---|

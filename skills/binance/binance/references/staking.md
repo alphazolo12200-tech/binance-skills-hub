@@ -57,3 +57,10 @@
 | redeem-sol | `amount` [] | Redeem SOL |
 | sol-staking-account | [] | SOL Staking account |
 | subscribe-sol-staking | `amount` [] | Subscribe SOL Staking |
+
+### Enums
+
+**asset:** `WBETH` `BETH`
+**redeem-to:** `SPOT` `FLEXIBLE`
+**source-account:** `SPOT` `FUND` `ALL`
+**type:** `CLAIM` `DISTRIBUTE`

@@ -45,15 +45,8 @@
 | taker-buy-sell-volume | `pair` `contract-type` `period` [`limit` `start-time` `end-time`] | Taker Buy/Sell Volume |
 | test-connectivity | [] | Test Connectivity |
 | ticker24hr-price-change-statistics | [`symbol` `pair`] | 24hr Ticker Price Change Statistics |
-| top-trader-long-short-ratio-accounts | `symbol` `period` [`limit` `start-time` `end-time`] | Top Trader Long/Short Ratio (Accounts) |
-| top-trader-long-short-ratio-positions | `pair` `period` [`limit` `start-time` `end-time`] | Top Trader Long/Short Ratio (Positions) |
-
-
-## Portfolio Margin Endpoints (auth required)
-
-| Endpoint | Key params | Description |
-|---|---|---|
-| classic-portfolio-margin-account-information | `asset` [] | Classic Portfolio Margin Account Information |
+| top-trader-long-short-ratio-accounts | `symbol` `period` [`limit` `start-time` `end-time`] | Top Trader Long/Short Account Ratio |
+| top-trader-long-short-ratio-positions | `pair` `period` [`limit` `start-time` `end-time`] | Top Trader Long/Short Position Ratio |
 
 
 ## Trade (auth required)
@@ -74,8 +67,8 @@
 | get-position-margin-change-history | `symbol` [`type` `start-time` `end-time` `limit`] | Get Position Margin Change History |
 | modify-isolated-position-margin | `symbol` `amount` `type` [`position-side`] | Modify Isolated Position Margin |
 | modify-multiple-orders | `batch-orders` [] | Modify Multiple Orders |
-| modify-order | `symbol` `side` [`order-id` `orig-client-order-id` `quantity` `price` `price-match`] | Modify Order |
-| new-order | `symbol` `side` `type` [`position-side` `time-in-force` `quantity` `reduce-only` `price` `new-client-order-id` `stop-price` `close-position` `activation-price` `callback-rate` `working-type` `price-protect` `new-order-resp-type` `price-match` `self-trade-prevention-mode`] | New Order |
+| modify-order | `symbol` `side` [`order-id` `orig-client-order-id` `quantity` `price` `price-match` `modify-id`] | Modify Order |
+| new-order | `symbol` `side` `type` [`position-side` `reduce-only` `quantity` `price` `new-client-order-id` `stop-price` `close-position` `activation-price` `callback-rate` `time-in-force` `working-type` `price-protect` `new-order-resp-type` `price-match` `self-trade-prevention-mode`] | New Order |
 | place-multiple-orders | `batch-orders` [] | Place Multiple Orders |
 | position-adl-quantile-estimation | [`symbol`] | Position ADL Quantile Estimation |
 | position-information | [`margin-asset` `pair`] | Position Information |
@@ -95,13 +88,16 @@
 ### Enums
 
 **auto-close-type:** `LIQUIDATION` `ADL`
-**contract-type:** `PERPETUAL` `CURRENT_QUARTER` `NEXT_QUARTER` `CURRENT_QUARTER_DELIVERING` `NEXT_QUARTER_DELIVERING` `PERPETUAL_DELIVERING`
+**contract-type:** `ALL` `PERPETUAL` `CURRENT_QUARTER` `NEXT_QUARTER`
+**income-type:** `TRANSFER` `WELCOME_BONUS` `FUNDING_FEE` `REALIZED_PNL` `COMMISSION` `INSURANCE_CLEAR` `DELIVERED_SETTELMENT`
 **interval:** `1m` `3m` `5m` `15m` `30m` `1h` `2h` `4h` `6h` `8h` `12h` `1d` `3d` `1w` `1M`
 **margin-type:** `ISOLATED` `CROSSED`
 **new-order-resp-type:** `ACK` `RESULT`
 **period:** `5m` `15m` `30m` `1h` `2h` `4h` `6h` `12h` `1d`
 **position-side:** `BOTH` `LONG` `SHORT`
-**price-match:** `NONE` `OPPONENT` `OPPONENT_5` `OPPONENT_10` `OPPONENT_20` `QUEUE` `QUEUE_5` `QUEUE_10` `QUEUE_20`
+**price-match:** `OPPONENT` `OPPONENT_5` `OPPONENT_10` `OPPONENT_20` `QUEUE` `QUEUE_5` `QUEUE_10` `QUEUE_20`
+**price-protect:** `true` `false`
+**reduce-only:** `true` `false`
 **self-trade-prevention-mode:** `NONE` `EXPIRE_TAKER` `EXPIRE_BOTH` `EXPIRE_MAKER`
 **side:** `BUY` `SELL`
 **time-in-force:** `GTC` `IOC` `FOK` `GTX`
