@@ -1,4 +1,4 @@
-## C2C (auth required)
+## Default
 
 | Endpoint | Key params | Description |
 |---|---|---|

@@ -80,12 +80,12 @@
 **below-time-in-force:** `GTC` `IOC` `FOK`
 **below-type:** `STOP_LOSS` `STOP_LOSS_LIMIT` `TAKE_PROFIT` `TAKE_PROFIT_LIMIT`
 **cancel-replace-mode:** `STOP_ON_FAILURE` `ALLOW_FAILURE`
-**cancel-restrictions:** `ONLY_NEW` `NEW` `ONLY_PARTIALLY_FILLED` `PARTIALLY_FILLED`
+**cancel-restrictions:** `ONLY_NEW` `ONLY_PARTIALLY_FILLED`
 **interval:** `1s` `1m` `3m` `5m` `15m` `30m` `1h` `2h` `4h` `6h` `8h` `12h` `1d` `3d` `1w` `1M`
-**new-order-resp-type:** `ACK` `RESULT` `FULL` `MARKET` `LIMIT`
+**new-order-resp-type:** `ACK` `RESULT` `FULL`
 **order-rate-limit-exceeded-mode:** `DO_NOTHING` `CANCEL_ONLY`
-**peg-offset-type:** `PRICE_LEVEL` `NON_REPRESENTABLE`
-**peg-price-type:** `PRIMARY_PEG` `MARKET_PEG` `NON_REPRESENTABLE`
+**peg-offset-type:** `PRICE_LEVEL`
+**peg-price-type:** `PRIMARY_PEG` `MARKET_PEG`
 **pending-above-peg-offset-type:** `PRICE_LEVEL`
 **pending-above-peg-price-type:** `PRIMARY_PEG` `MARKET_PEG`
 **pending-above-time-in-force:** `GTC` `IOC` `FOK`
@@ -99,14 +99,14 @@
 **pending-side:** `BUY` `SELL`
 **pending-time-in-force:** `GTC` `IOC` `FOK`
 **pending-type:** `LIMIT` `MARKET` `STOP_LOSS` `STOP_LOSS_LIMIT` `TAKE_PROFIT` `TAKE_PROFIT_LIMIT` `LIMIT_MAKER`
-**self-trade-prevention-mode:** `NONE` `EXPIRE_TAKER` `EXPIRE_MAKER` `EXPIRE_BOTH` `DECREMENT` `TRANSFER` `NON_REPRESENTABLE`
+**permissions:** `SPOT` `MARGIN` `LEVERAGED` `TRD_GRP_002` `TRD_GRP_003` `TRD_GRP_004` `TRD_GRP_005` `TRD_GRP_006` `TRD_GRP_007` `TRD_GRP_008` `TRD_GRP_009` `TRD_GRP_010` `TRD_GRP_011` `TRD_GRP_012` `TRD_GRP_013` `TRD_GRP_014` `TRD_GRP_015` `TRD_GRP_016` `TRD_GRP_017` `TRD_GRP_018` `TRD_GRP_019` `TRD_GRP_020` `TRD_GRP_021` `TRD_GRP_022` `TRD_GRP_023` `TRD_GRP_024` `TRD_GRP_025`
+**self-trade-prevention-mode:** `NONE` `EXPIRE_TAKER` `EXPIRE_MAKER` `EXPIRE_BOTH` `DECREMENT` `TRANSFER`
 **side:** `BUY` `SELL`
 **stop-limit-time-in-force:** `GTC` `IOC` `FOK`
-**symbol-status:** `TRADING` `END_OF_DAY` `HALT` `BREAK` `NON_REPRESENTABLE`
-**time-in-force:** `GTC` `IOC` `FOK` `NON_REPRESENTABLE`
-**type:** `FULL` `MINI`
-**type:** `MARKET` `LIMIT` `STOP_LOSS` `STOP_LOSS_LIMIT` `TAKE_PROFIT` `TAKE_PROFIT_LIMIT` `LIMIT_MAKER` `NON_REPRESENTABLE`
-**window-size:** `1m` `2m` `3m` `4m` `5m` `6m` `7m` `8m` `9m` `10m` `11m` `12m` `13m` `14m` `15m` `16m` `17m` `18m` `19m` `20m` `21m` `22m` `23m` `24m` `25m` `26m` `27m` `28m` `29m` `30m` `31m` `32m` `33m` `34m` `35m` `36m` `37m` `38m` `39m` `40m` `41m` `42m` `43m` `44m` `45m` `46m` `47m` `48m` `49m` `50m` `51m` `52m` `53m` `54m` `55m` `56m` `57m` `58m` `59m` `1h` `2h` `3h` `4h` `5h` `6h` `7h` `8h` `9h` `10h` `11h` `12h` `13h` `14h` `15h` `16h` `17h` `18h` `19h` `20h` `21h` `22h` `23h` `1d` `2d` `3d` `4d` `5d` `6d`
+**symbol-status:** `TRADING` `HALT` `BREAK`
+**time-in-force:** `GTC` `IOC` `FOK`
+**type:** `MARKET` `LIMIT` `STOP_LOSS` `STOP_LOSS_LIMIT` `TAKE_PROFIT` `TAKE_PROFIT_LIMIT` `LIMIT_MAKER`
+**window-size:** `1m` `2m` `3m` `4m` `5m` `6m` `7m` `8m` `9m` `10m` `11m` `12m` `13m` `14m` `15m` `16m` `17m` `18m` `19m` `20m` `21m` `22m` `23m` `24m` `25m` `26m` `27m` `28m` `29m` `30m` `31m` `32m` `33m` `34m` `35m` `36m` `37m` `38m` `39m` `40m` `41m` `42m` `43m` `44m` `45m` `46m` `47m` `48m` `49m` `50m` `51m` `52m` `53m` `54m` `55m` `56m` `57m` `58m` `59m` `1h` `2h` `3h` `4h` `5h` `6h` `7h` `8h` `9h` `10h` `11h` `12h` `13h` `14h` `15h` `16h` `17h` `18h` `19h` `20h` `21h` `22h` `23h` `1d` `2d` `3d` `4d` `5d` `6d` `7d`
 **working-peg-offset-type:** `PRICE_LEVEL`
 **working-peg-price-type:** `PRIMARY_PEG` `MARKET_PEG`
 **working-side:** `BUY` `SELL`

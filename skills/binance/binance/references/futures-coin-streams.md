@@ -1,4 +1,4 @@
-## Websocket Market Streams
+## Default
 
 | Endpoint | Key params | Description |
 |---|---|---|
@@ -16,10 +16,10 @@
 | individual-symbol-mini-ticker-stream | `symbol` [`id`] | Individual Symbol Mini Ticker Stream |
 | individual-symbol-ticker-streams | `symbol` [`id`] | Individual Symbol Ticker Streams |
 | kline-candlestick-streams | `symbol` `interval` [`id`] | Kline/Candlestick Streams |
-| liquidation-order-streams | `symbol` [`id`] | Liquidation Order Streams |
 | mark-price-kline-candlestick-streams | `symbol` `interval` [`id`] | Mark Price Kline/Candlestick Streams |
 | mark-price-of-all-symbols-of-a-pair | `pair` [`id` `update-speed`] | Mark Price of All Symbols of a Pair |
 | mark-price-stream | `symbol` [`id` `update-speed`] | Mark Price Stream |
+| market-liquidation-order-streams | `symbol` [`id`] | Market Liquidation Order Streams |
 | partial-book-depth-streams | `symbol` `levels` [`id` `update-speed`] | Partial Book Depth Streams |
 
 ## Other streams
@@ -27,3 +27,9 @@
 | Endpoint | Key params | Description |
 |---|---|---|
 | user-data | listen-key [id] | Subscribes to the user data WebSocket stream using the provided listen key. |
+### Enums
+
+**contract-type:** `perpetual` `current_quarter` `next_quarter`
+**interval:** `1m` `3m` `5m` `15m` `30m` `1h` `2h` `4h` `6h` `8h` `12h` `1d` `3d` `1w` `1M`
+**levels:** `5` `10` `20`
+**update-speed:** `100ms` `500ms`

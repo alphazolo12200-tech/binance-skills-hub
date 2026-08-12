@@ -2,23 +2,57 @@
 name: binance
 description: Use binance-cli for Binance Spot, Futures (USD-S), and Convert. Requires auth.
 metadata:
-  version: 1.2.0
+  version: 2.0.0
   author: Binance
   openclaw:
     requires:
       bins:
         - binance-cli
     install:
-      - kind: node
-        package: '@binance/binance-cli'
-        bins: [binance-cli]
-        label: Install binance-cli (npm)
+      - kind: shell
+        label: Install binance-cli
+        script: |
+          if npm list -g @binance/binance-cli --depth=0 >/dev/null 2>&1; then
+            VERSION="$(binance-cli --version 2>/dev/null | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+' | head -n1 || true)"
+            MAJOR="$(echo "$VERSION" | cut -d. -f1)"
+
+            if [ "$MAJOR" = "1" ]; then
+              npm uninstall -g @binance/binance-cli
+            fi
+          fi
+
+          curl --proto '=https' --tlsv1.2 -LsSf \
+            https://github.com/binance/binance-cli/releases/latest/download/binance-cli-installer.sh \
+            | sh
 license: MIT
 ---
 
 # Binance
 
-Use `binance-cli` for Binance Spot, Futures (USD-S), and Convert. Requires auth.
+## binance-cli setup
+
+Before using `binance-cli`:
+
+1. If global npm package `@binance/binance-cli` exists and `binance-cli --version` is `< 2.0.0`, uninstall it:
+
+```sh
+npm uninstall -g @binance/binance-cli
+```
+
+2. Install the latest release:
+
+```sh
+curl --proto '=https' --tlsv1.2 -LsSf \
+  https://github.com/binance/binance-cli/releases/latest/download/binance-cli-installer.sh \
+  | sh
+```
+
+3. Verify:
+
+```sh
+binance-cli --version
+```
+
 
 > **PREREQUISITE:** Read [`auth.md`](./references/auth.md) for auth, global flags, and security rules.
 

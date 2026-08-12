@@ -43,17 +43,17 @@
 |---|---|---|
 | auto-cancel-all-open-orders | `underlyings` [] | Auto-Cancel All Open Orders (Kill-Switch) Heartbeat |
 | get-auto-cancel-all-open-orders | [`underlying`] | Get Auto-Cancel All Open Orders (Kill-Switch) Config |
-| get-market-maker-protection-config | [`underlying`] | Get Market Maker Protection Config |
-| reset-market-maker-protection-config | [`underlying`] | Reset Market Maker Protection Config |
+| get-market-maker-protection-config | `underlying` [] | Get Market Maker Protection Config |
+| reset-market-maker-protection-config | `underlying` [] | Reset Market Maker Protection Config |
 | set-auto-cancel-all-open-orders | `underlying` `countdown-time` [] | Set Auto-Cancel All Open Orders (Kill-Switch) Config |
-| set-market-maker-protection-config | [`underlying` `window-time-in-milliseconds` `frozen-time-in-milliseconds` `qty-limit` `delta-limit`] | Set Market Maker Protection Config |
+| set-market-maker-protection-config | `underlying` `window-time-in-milliseconds` `frozen-time-in-milliseconds` `qty-limit` `delta-limit` [] | Set Market Maker Protection Config |
 
 
 ## Trade (auth required)
 
 | Endpoint | Key params | Description |
 |---|---|---|
-| account-trade-list | [`symbol` `from-id` `start-time` `end-time` `limit`] | Account Trade List |
+| account-trade-list | `symbol` [`from-id` `start-time` `end-time` `limit`] | Account Trade List |
 | cancel-all-option-orders-by-underlying | `underlying` [] | Cancel All Option Orders By Underlying |
 | cancel-all-option-orders-on-specific-symbol | `symbol` [] | Cancel all Option orders on specific symbol |
 | cancel-multiple-option-orders | `symbol` [`order-ids` `client-order-ids`] | Cancel Multiple Option Orders |
@@ -64,6 +64,7 @@
 | query-current-open-option-orders | [`symbol` `order-id` `start-time` `end-time`] | Query Current Open Option Orders |
 | query-option-order-history | `symbol` [`order-id` `start-time` `end-time` `limit`] | Query Option Order History |
 | query-single-order | `symbol` [`order-id` `client-order-id`] | Query Single Order |
+| tradfi-options-contract | [] | TradFi Options Contract |
 | user-commission | [] | User Commission |
 | user-exercise-record | [`symbol` `start-time` `end-time` `limit`] | User Exercise Record |
 
@@ -78,8 +79,11 @@
 
 ### Enums
 
+**currency:** `USDT`
+**interval:** `1m` `3m` `5m` `15m` `30m` `1h` `2h` `4h` `6h` `8h` `12h` `1d` `3d` `1w` `1M`
+**liquidity:** `MAKER` `TAKER`
 **new-order-resp-type:** `ACK` `RESULT`
-**self-trade-prevention-mode:** `EXPIRE_TAKER` `EXPIRE_BOTH` `EXPIRE_MAKER`
+**self-trade-prevention-mode:** `NONE` `EXPIRE_TAKER` `EXPIRE_MAKER` `EXPIRE_BOTH`
 **side:** `BUY` `SELL`
 **time-in-force:** `GTC` `IOC` `FOK` `GTX`
 **type:** `LIMIT`

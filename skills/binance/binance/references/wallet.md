@@ -17,8 +17,8 @@
 |---|---|---|
 | asset-detail | [`asset`] | Asset Detail |
 | asset-dividend-record | [`asset` `start-time` `end-time` `limit`] | Asset Dividend Record |
-| dust-convert | `asset` [`client-id` `target-asset` `third-party-client-id` `dust-quota-asset-to-target-asset-price`] | Dust Convert |
-| dust-convertible-assets | `target-asset` [`dust-quota-asset-to-target-asset-price`] | Dust Convertible Assets |
+| dust-convert | `asset` [`account-type` `client-id` `target-asset` `third-party-client-id` `dust-quota-asset-to-target-asset-price`] | Dust Convert |
+| dust-convertible-assets | `target-asset` [`account-type` `dust-quota-asset-to-target-asset-price`] | Dust Convertible Assets |
 | dust-transfer | `asset` [`account-type`] | Dust Transfer |
 | dustlog | [`account-type` `start-time` `end-time`] | DustLog |
 | funding-wallet | [`asset` `need-btc-valuation`] | Funding Wallet |
@@ -53,23 +53,33 @@
 
 | Endpoint | Key params | Description |
 |---|---|---|
-| get-symbols-delist-schedule-for-spot | [] | Get symbols delist schedule for spot |
-| system-status | [] | System Status (System) |
+| get-symbols-delist-schedule-for-spot | [] | Get Spot Delist Schedule |
+| system-status | [] | System Status |
 
 
 ## Travel Rule (auth required)
 
 | Endpoint | Key params | Description |
 |---|---|---|
-| broker-withdraw | `address` `coin` `amount` `withdraw-order-id` `questionnaire` `originator-pii` `signature` [`address-tag` `network` `address-name` `transaction-fee-flag` `wallet-type`] | Broker Withdraw (for brokers of local entities that require travel rule) |
+| broker-withdraw | `address` `coin` `amount` `withdraw-order-id` `questionnaire` `originator-pii` [`address-tag` `network` `address-name` `transaction-fee-flag` `wallet-type`] | Broker Withdraw (for brokers of local entities that require travel rule) |
 | check-questionnaire-requirements | [] | Check Questionnaire Requirements (for local entities that require travel rule) (supporting network) |
-| deposit-history-travel-rule | [`tr-id` `tx-id` `tran-id` `network` `coin` `travel-rule-status` `pending-questionnaire` `start-time` `end-time` `offset` `limit`] | Deposit History (for local entities that required travel rule) (supporting network) |
+| deposit-history-travel-rule | [`tr-id` `tx-id` `tran-id` `network` `coin` `travel-rule-status` `pending-questionnaire` `start-time` `end-time` `offset` `limit`] | Deposit History Travel Rule (for local entities that required travel rule) (supporting network) |
 | deposit-history-v2 | [`deposit-id` `tx-id` `network` `coin` `retrieve-questionnaire` `start-time` `end-time` `offset` `limit`] | Deposit History V2 (for local entities that required travel rule) (supporting network) |
 | fetch-address-verification-list | [] | Fetch address verification list |
-| submit-deposit-questionnaire | `sub-account-id` `deposit-id` `questionnaire` `beneficiary-pii` `signature` [`network` `coin` `amount` `address` `address-tag`] | Submit Deposit Questionnaire (For local entities that require travel rule) (supporting network) |
+| get-country-list | [] | Get Country List |
+| get-region-list | `country-code` [] | Get Region List |
+| submit-deposit-questionnaire | `sub-account-id` `deposit-id` `questionnaire` `beneficiary-pii` [`network` `coin` `amount` `address` `address-tag`] | Submit Deposit Questionnaire Broker (For local entities that require travel rule) (supporting network) |
 | submit-deposit-questionnaire-travel-rule | `tran-id` `questionnaire` [] | Submit Deposit Questionnaire (For local entities that require travel rule) (supporting network) |
 | submit-deposit-questionnaire-v2 | `deposit-id` `questionnaire` [] | Submit Deposit Questionnaire V2 (For local entities that require travel rule) (supporting network) |
 | vasp-list | [] | VASP list (for local entities that require travel rule) (supporting network) |
-| withdraw-history-v1 | [`tr-id` `tx-id` `withdraw-order-id` `network` `coin` `travel-rule-status` `offset` `limit` `start-time` `end-time`] | Withdraw History (for local entities that require travel rule) (supporting network) |
+| withdraw-history-v1 | [`tr-id` `tx-id` `withdraw-order-id` `network` `coin` `travel-rule-status` `offset` `limit` `start-time` `end-time`] | Withdraw History Travel Rule (supporting network) |
 | withdraw-history-v2 | [`tr-id` `tx-id` `withdraw-order-id` `network` `coin` `travel-rule-status` `offset` `limit` `start-time` `end-time`] | Withdraw History V2 (for local entities that require travel rule) (supporting network) |
-| withdraw-travel-rule | `coin` `address` `amount` `questionnaire` [`withdraw-order-id` `network` `address-tag` `transaction-fee-flag` `name` `wallet-type`] | Withdraw (for local entities that require travel rule) |
+| withdraw-travel-rule | `coin` `address` `amount` `questionnaire` [`withdraw-order-id` `network` `address-tag` `transaction-fee-flag` `name` `wallet-type`] | Withdraw Travel Rule |
+
+### Enums
+
+**account-type:** `SPOT` `MARGIN`
+**from-symbol:** `ISOLATEDMARGIN_MARGIN` `ISOLATEDMARGIN_ISOLATEDMARGIN`
+**status:** `0` `1` `2` `6` `7` `8`
+**to-symbol:** `MARGIN_ISOLATEDMARGIN` `ISOLATEDMARGIN_ISOLATEDMARGIN`
+**type:** `MAIN_UMFUTURE` `MAIN_CMFUTURE` `MAIN_MARGIN` `UMFUTURE_MAIN` `UMFUTURE_MARGIN` `CMFUTURE_MAIN` `CMFUTURE_MARGIN` `MARGIN_MAIN` `MARGIN_UMFUTURE` `MARGIN_CMFUTURE` `ISOLATEDMARGIN_MARGIN` `MARGIN_ISOLATEDMARGIN` `ISOLATEDMARGIN_ISOLATEDMARGIN` `MAIN_FUNDING` `FUNDING_MAIN` `FUNDING_UMFUTURE` `UMFUTURE_FUNDING` `MARGIN_FUNDING` `FUNDING_MARGIN` `FUNDING_CMFUTURE` `CMFUTURE_FUNDING` `MAIN_OPTION` `OPTION_MAIN` `UMFUTURE_OPTION` `OPTION_UMFUTURE` `MARGIN_OPTION` `OPTION_MARGIN` `FUNDING_OPTION` `OPTION_FUNDING` `MAIN_PORTFOLIO_MARGIN` `PORTFOLIO_MARGIN_MAIN`

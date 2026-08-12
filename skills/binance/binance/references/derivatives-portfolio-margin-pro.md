@@ -14,11 +14,11 @@
 | get-portfolio-margin-pro-account-info | [] | Get Portfolio Margin Pro Account Info |
 | get-portfolio-margin-pro-span-account-info | [] | Get Portfolio Margin Pro SPAN Account Info |
 | get-transferable-earn-asset-balance-for-portfolio-margin | `asset` `transfer-type` [] | Get Transferable Earn Asset Balance for Portfolio Margin |
-| portfolio-margin-pro-bankruptcy-loan-repay | [`from`] | Portfolio Margin Pro Bankruptcy Loan Repay |
+| portfolio-margin-pro-bankruptcy-loan-repay | [`-from`] | Portfolio Margin Pro Bankruptcy Loan Repay |
 | query-portfolio-margin-pro-bankruptcy-loan-amount | [] | Query Portfolio Margin Pro Bankruptcy Loan Amount |
-| query-portfolio-margin-pro-bankruptcy-loan-repay-history | [`start-time` `end-time` `current` `size`] | Query Portfolio Margin Pro Bankruptcy Loan Repay History |
+| query-portfolio-margin-pro-bankruptcy-loan-repay-history | [`start-time` `end-time` `size` `current`] | Query Portfolio Margin Pro Bankruptcy Loan Repay History |
 | query-portfolio-margin-pro-negative-balance-interest-history | [`asset` `start-time` `end-time` `size`] | Query Portfolio Margin Pro Negative Balance Interest History |
-| repay-futures-negative-balance | [`from`] | Repay futures Negative Balance |
+| repay-futures-negative-balance | [`-from`] | Repay futures Negative Balance |
 | set-margin-call-level | `margin-call-level` [] | Set Margin Call Level |
 | switch-delta-mode | `delta-enabled` [] | Switch Delta Mode |
 | transfer-ldusdt-rwusd-for-portfolio-margin | `asset` `transfer-type` `amount` [] | Transfer LDUSDT/RWUSD for Portfolio Margin |
@@ -32,3 +32,12 @@
 | portfolio-margin-collateral-rate | [] | Portfolio Margin Collateral Rate |
 | portfolio-margin-pro-tiered-collateral-rate | [] | Portfolio Margin Pro Tiered Collateral Rate |
 | query-portfolio-margin-asset-index-price | [`asset`] | Query Portfolio Margin Asset Index Price |
+
+### Enums
+
+**asset:** `LDUSDT` `RWUSD`
+**auto-repay:** `true` `false`
+**delta-enabled:** `true` `false`
+**from:** `SPOT` `MARGIN`
+**transfer-side:** `TO_UM` `FROM_UM`
+**transfer-type:** `EARN_TO_FUTURE` `FUTURE_TO_EARN`
