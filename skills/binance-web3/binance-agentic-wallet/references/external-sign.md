@@ -34,7 +34,7 @@ baw contract-call preview --binanceChainId <binanceChainId> --from <from> --to <
 For Solana:
 
 ```bash
-baw contract-call preview --binanceChainId CT_501 --from <from> --unsignedTx <base58> --json
+baw contract-call preview --binanceChainId CT_501 --from <from> --unsignedTx <base64> --json
 ```
 
 ### Parameters
@@ -46,7 +46,7 @@ baw contract-call preview --binanceChainId CT_501 --from <from> --unsignedTx <ba
 | `--to` | EVM yes | - | Contract address to interact with. |
 | `--value` | EVM no | `0` | Raw `eth_sendTransaction` value in wei, not human-readable. Must be a non-negative integer (decimal or `0x`-hex); decimals are rejected. |
 | `--inputData` | EVM no | `0x` | EVM calldata. |
-| `--unsignedTx` | Solana yes | - | Solana unsigned transaction, base58 encoded. |
+| `--unsignedTx` | Solana yes | - | Solana unsigned transaction, base64 encoded. |
 
 Do not pass gas settings. `contract-call` does not accept gas limit, gas price, or gas option parameters. Preview simulates directly and execute uses backend gas estimation.
 
