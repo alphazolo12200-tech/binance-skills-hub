@@ -14,7 +14,7 @@ description: |
   or any on-chain wallet operation.
 metadata:
   author: binance-web3-team
-  version: '1.9.0'
+  version: '1.9.1'
   requiredCliVersion: '1.8.0'
   openclaw:
     requires:
