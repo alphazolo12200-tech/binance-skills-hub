@@ -40,7 +40,7 @@ Before analysis:
 
 If reliable market data cannot be obtained, return:
 
-`INSUFFICIENT DATA — NO RELIABLE SETUP`
+`INSUFFICIENT DATA — NO RELIABLE MARKET CONFIGURATION`
 
 ## Market regime
 
@@ -158,41 +158,46 @@ A hard rejection overrides a high raw score.
 
 Keep score, confidence, and decision state separate.
 
-### CONFIRMED SETUP
+Decision states describe technical evidence observed in the supplied market data. They are analytical labels, not trade recommendations, entry instructions, exit instructions, or predictions of future returns.
+
+### CONFIRMED MARKET CONFIGURATION
 All must be true:
 - score >= 80
 - structure >= 16/25
 - volume >= 10/20
 - confirmation >= 10/15
-- R:R >= 2.0:1
+- illustrative R:R >= 2.0:1
 - acceptable liquidity/market quality
 - adequate data freshness
 - no hard rejection
 
-### WAIT FOR CONFIRMATION
+This means the supplied data satisfies the defined technical observation criteria. It does not mean that a trade is recommended, suitable, or expected to succeed.
+
+### AWAITING TECHNICAL CONFIRMATION
 Use when:
 - score >= 70
 - structure is valid
-- setup is developing
-- required trigger/confirmation has not occurred
+- the configuration is developing
+- the required trigger/confirmation has not occurred
 
 ### WATCH
-Use for a developing setup with a clearly identifiable future condition, including borderline setups that do not yet meet confirmation requirements.
+Use for a developing market configuration with a clearly identifiable future condition, including borderline configurations that do not yet meet confirmation requirements.
 
-### NO TRADE
+### NO VALID MARKET CONFIGURATION
 Use when:
 - a hard rejection applies
-- R:R is inadequate
+- illustrative R:R is inadequate
 - evidence is materially contradictory
-- market is too unclear
-- setup is excessively extended
+- market conditions are too unclear
+- the configuration is excessively extended
 - data quality is insufficient
 
-### AVOID
-Use for low-quality conditions that are not worth monitoring.
+### LOW-QUALITY / INSUFFICIENT EVIDENCE
+Use for conditions that do not provide sufficient technical evidence for meaningful monitoring.
 
-Never force a fixed number of winners. If no setup qualifies, return `NO VALID SETUP FOUND`.
+Never force a fixed number of qualifying configurations. If no configuration qualifies, return `NO VALID MARKET CONFIGURATION`.
 
+The decision state must describe the evidence actually observed in the supplied data. Do not convert an analytical state into a recommendation to buy, sell, enter, exit, or hold.
 ## Confirmation rules
 
 A high score does not automatically mean confirmation.
@@ -206,7 +211,7 @@ For breakouts, evaluate:
 - immediate rejection
 - retest behavior where available
 
-If the trigger has not occurred, use `WAIT FOR CONFIRMATION`.
+If the trigger has not occurred, use `AWAITING TECHNICAL CONFIRMATION`.
 
 For pullbacks, require evidence that the trend is actually resuming rather than assuming continuation.
 

@@ -6,7 +6,7 @@ Read-only AI research skill for cryptocurrency Spot-market setup analysis.
 
 Spot Signal Scout identifies market regime and common Spot setups, scores structure, volume, momentum, confirmation, risk/reward, and market quality, then separates score from confidence and decision state.
 
-Possible states are `CONFIRMED SETUP`, `WAIT FOR CONFIRMATION`, `WATCH`, `NO TRADE`, and `AVOID`.
+Possible analytical states are `CONFIRMED MARKET CONFIGURATION`, `AWAITING TECHNICAL CONFIRMATION`, `WATCH`, `NO VALID MARKET CONFIGURATION`, and `LOW-QUALITY / INSUFFICIENT EVIDENCE`.
 
 ## What it does not do
 
